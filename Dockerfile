@@ -7,13 +7,15 @@ MAINTAINER Admin <admin@admin.com>
 CMD echo "now running..."
 
 # httpdのインストール
-RUN yum install -y httpd
+RUN yum install -y nginx
 
 # ホストのindex.htmlをImage内にコピー
-ADD ./index.html /var/www/html/
+ADD ./index.html /usr/share/nginx/html/
 
 #ポート80を開ける
 EXPOSE 80
 
-#runした時にapache起動
-CMD ["/usr/sbin/httpd", "-D", "FOREGROUND"]
+RUN mkdir -p /run/nginx
+
+#runした時にnginx起動
+CMD ["/usr/sbin/nginx", "-g", "daemon off;"]
