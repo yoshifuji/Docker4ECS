@@ -14,6 +14,7 @@ ADD ./index.html /usr/share/nginx/html/
 
 #ポート80を開ける
 EXPOSE 80
+# EXPOSE 8888
 
 RUN mkdir -p /run/nginx
 
