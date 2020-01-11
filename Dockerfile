@@ -11,7 +11,8 @@ RUN yum install -y nginx
 
 # ドキュメントルート
 ADD ./app /app
-ADD ./web/default.conf /etc/nginx/conf.d/default.conf
+## cf: local dev setting
+# ADD ./web/default.conf /etc/nginx/conf.d/default.conf
 
 #ポート80を開ける
 EXPOSE 80

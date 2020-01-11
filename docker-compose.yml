@@ -2,19 +2,19 @@ version: "3"
 services:
   app:
     build: .
-    # image: 158491365048.dkr.ecr.ap-northeast-1.amazonaws.com/hello-httpd:latest
-    ports:
-      - "127.0.0.1:80:8080"
+    image: 158491365048.dkr.ecr.ap-northeast-1.amazonaws.com/hello-httpd:latest
+    # ports:
+    #   - "127.0.0.1:80:8080"
     links: 
       - fluentd
     volumes:
       - ./tmp/nginx:/var/log/nginx
-    # logging:
-    #   driver: "fluentd"
-    #   options:
-    #     fluentd-address: "localhost:24224"
-    #     fluentd-async-connect: "true"
-    #     tag: "nginx.{{.Name}}.{{.ID}}"
+    logging:
+      driver: "fluentd"
+      options:
+        fluentd-address: "localhost:24224"
+        fluentd-async-connect: "true"
+        tag: "nginx.{{.Name}}.{{.ID}}"
   fluentd:
     image: nishipy/fluentd-s3:latest
     ports:
