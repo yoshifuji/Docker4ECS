@@ -9,12 +9,13 @@ CMD echo "now running..."
 # httpdのインストール
 RUN yum install -y nginx
 
-# ホストのindex.htmlをImage内にコピー
-ADD ./index.html /usr/share/nginx/html/
+# ドキュメントルート
+ADD ./app /app
+ADD ./web/default.conf /etc/nginx/conf.d/default.conf
 
 #ポート80を開ける
 EXPOSE 80
-# EXPOSE 8888
+EXPOSE 8080
 
 RUN mkdir -p /run/nginx
 
